@@ -83,6 +83,8 @@ group :test do
 end
 //}
 
+bundle installコマンドを実行します。システムのGemと切り離すため、--pathオプションを追加しています。
+
 //emlist{
 $ bundle install --path vendor/bundle
 Fetching gem metadata from https://rubygems.org/.........
@@ -141,7 +143,7 @@ $ bundle exec rake db:migrate
 
 == Railsアプリを起動する
 
-rails serverコマンドを実行して、http://localhost:3000 にアクセスしてみましょう。アプリが起動していることが確認できると思います。
+rails serverコマンドを実行して、http://localhost:3000 にアクセスしてみましょう。次のような画面が表示され、アプリの起動を確認できます。
 
 //emlist{
 $ bundle exec rails s
@@ -150,6 +152,21 @@ $ bundle exec rails s
 
 //image[initialhome][初期状態のホームページ]{
 //}
+
+
+最後に変更をgitリポジトリへコミットしておきましょう。
+
+//emlist{
+$ git add .
+$ git commit -m 'Instagram APIから写真情報を取得できるようにした'
+//}
+
+== この章での変更点
+
+ここまでの変更は下記コミットログで確認できます。
+
+@<href>{https://github.com/mochiz/nyansta-demo/commit/6a8b519}
+
 
 
 ====[column] 不要なファイルをジェネレートしないようにする
@@ -179,3 +196,4 @@ end
 @<href>{http://guides.rubyonrails.org/configuring.html}
 
 ===[/column]
+

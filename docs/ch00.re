@@ -1,12 +1,11 @@
-= はじめに
+= Nyanstagram風のRailsアプリを作ってみよう
 
-== つくるもの
+== やること
 
 Instagramに投稿された「猫」タグ付きの写真が一覧表示されるRailsアプリを作ることを目指します。ねこにまみれたい。
 
 //image[home][画像サンプル]{
 //}
-
 
 == 必要なもの
 
@@ -25,3 +24,10 @@ Instagramに投稿された「猫」タグ付きの写真が一覧表示され�
 一度も触ったことのない方は、先に Ruby on Rails Tutorial を触ってみることをオススメします。
 
 @<href>{https://github.com/kmuto/review/blob/master/doc/format.rdoc}
+
+
+== 参考リポジトリ
+
+参考用リポジトリを用意しておきました。コードの詳細はこちらからご確認ください。
+
+@<href>{https://github.com/mochiz/nyansta-demo}

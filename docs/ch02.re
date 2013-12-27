@@ -1,12 +1,12 @@
 = Instagram APIから写真情報を取得しよう
 
-== instagram gem をインストール
+== instagram gemをインストールする
 
-Instagram API用の公式Gemが提供されているのでこちらを利用します。
+Instagram API用に公式のGemが提供されているのでこちらを利用します。
 
 @<href>{https://github.com/Instagram/instagram-ruby-gem}
 
-Gemfileに下記を追加して、bundleコマンドを実行しましょう。
+Gemfileに下記を追加し、bundleコマンドでインストールします。
 
 //source[/Gemfile]{
 
@@ -36,6 +36,7 @@ Instagramのアプリケーション管理画面からCLIENT ID, CLIENT SECRET�
 //}
 
 Instagram APIへの接続確認をしてみましょう。
+成功している場合は、images等を含んだハッシュが返ります。
 
 //emlist{
 
@@ -47,13 +48,20 @@ $ bundle exec rails c
 [2] pry(main)> Instagram.media_popular
 => [{"attribution"=>nil,
   "videos"=>
-...
+  ...
+  "images"=>
+   {"low_resolution"=>
+     {"url"=>
+       "http://distilleryimage10.s3.amazonaws.com/ecee78bc6f1d11e3aa990e4f40f44b5e_6.jpg",
+      "width"=>306,
+      "height"=>306},
+  ...
 //}
 
 
 == 接続設定をする
 
-client_id, client_secretを設定ファイルに保存しておきます。
+毎回client_id, client_secretを指定しなくて良いよう、設定ファイルに保存しておきましょう。
 
 //source[/config/initializers/instagram.rb]{
 
@@ -64,11 +72,11 @@ Instagram.configure do |config|
 end
 //}
 
-gitリポジトリにクライアントID, クライアントシークレットが保存されないよう、環境変数として設定するようにします。
+ここでIDをベタ書きしてしまうと、gitリポジトリにクライアントID, クライアントシークレットが保存されてしまってよろしくないので、環境変数から読み込むようにしています。
 
-bashrc, zshrcに環境変数を設定すると複数のプロジェクトで衝突してしまうので、nyanstaアプリでのみ適用される環境変数を用意します。
+ここで、.bashや.zshに環境変数を設定すると、他の環境へ影響が出てしまうので、このプロジェクトでのみ適用されるよう、dotenvを利用します。
 
-dotenv-rails gem をインストール済みなので、プロジェクトルートに.envファイルを作成することでプロジェクトでのみ有効な環境変数を設定することが出来ます。
+前章でdotenv-rails gemはインストール済みなので、プロジェクトルートに.envファイルを作成することでプロジェクトでのみ有効な環境変数を設定することが出来ます。
 ここにクライアントID, クライアントシークレットを設定しましょう。
 このファイルはリポジトリにプッシュしないよう、.ignoreに追記しておきます。
 
@@ -102,3 +110,17 @@ $ bundle exec rails c
 instagram-ruby-gemについてより詳しくは、
 @<href>{https://github.com/Instagram/instagram-ruby-gem}
 を御覧ください。
+
+
+最後に変更をgitリポジトリへコミットしておきましょう。
+
+//emlist{
+$ git add .
+$ git commit -m 'Instagram APIから写真情報を取得できるようにした'
+//}
+
+== この章での変更点
+
+ここまでの変更は下記コミットログで確認できます。
+
+@<href>{https://github.com/mochiz/nyansta-demo/commit/391cfa38}

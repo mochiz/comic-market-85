@@ -38,6 +38,12 @@ def main
 end
 //}
 
+ソースコードは「//source[file.rb]」です。
+
+//source[/config/application.rb]{
+
+//}
+
 == 画像
 
 画像は「//image」ブロックを使います。
