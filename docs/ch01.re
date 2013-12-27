@@ -1,13 +1,5 @@
 = Railsアプリをセットアップしよう
 
-== 必要なもの
-
- * Ruby 2.1
- * PostgreSQL 9.3
- * Bundler 1.5
- * Git 1.8
- * Instagram アカウント
-
 == Railsアプリを新規作成する
 
 Railsアプリを新規作成します。Gemのインストールは別途行うので、--skip-bundleオプションをつけましょう。
@@ -27,7 +19,7 @@ $ rails new nyansta-demo --skip-bundle
       create  app/helpers/application_helper.rb
 //}
 
-作成したファイルを保存しておきましょう。
+都度gitリポジトリへ保存しておきましょう。
 
 //emlist{
 $ git init
@@ -47,9 +39,10 @@ $ git commit -m 'initial commit'
 == 必要なGemをインストールする
 
 bundleコマンドでGemをインストールしましょう。
-Gemfileを以下のように変更します。
+内容は以下のとおりです。
 
 //source[/Gemfile]{
+
 source 'https://rubygems.org'
 ruby '2.1.0'
 
@@ -104,8 +97,10 @@ It was installed into ./vendor/bundle
 
 == データベースをセットアップする
 
+今回のアプリではデータベースは必要ないのですが、herokuへデプロイするためPostgreSQL用の設定に変更します。
 
 //source[/config/database.yml]{
+
 development:
   adapter: postgresql
   encoding: unicode
@@ -131,30 +126,27 @@ production:
   password:
 //}
 
-スーパーユーザーでnyansta-demo用のユーザーを作っておきましょう。
+usernameに既存のユーザー名を使用するか、createuserコマンドでユーザーを作成してください。
 
 //emlist{
 $ createuser nyansta-demo -s
 //}
+
+DBのマイグレーションを行います。
 
 //emlist{
 $ bundle exec rake db:create
 $ bundle exec rake db:migrate
 //}
 
+== Railsアプリを起動する
 
-//emlist{
-$ bundle exec rails s
-$ bundle exec rake db:migrate
-//}
-
-Railsアプリを起動してみましょう
+rails serverコマンドを実行して、http://localhost:3000 にアクセスしてみましょう。アプリが起動していることが確認できると思います。
 
 //emlist{
 $ bundle exec rails s
 //}
 
-http://localhost:3000 にアクセスしてみましょう。アプリが起動していることが確認できると思います。
 
 //image[initialhome][初期状態のホームページ]{
 //}
@@ -162,9 +154,7 @@ http://localhost:3000 にアクセスしてみましょう。アプリが起動�
 
 ====[column] 不要なファイルをジェネレートしないようにする
 
-初期設定のままだと、利用しないassetsやhelperが作成されてちょっと面倒なので、ジェネレートしないよう設定しています。
-config/application.rbで様々な設定を変更できます。
-
+初期設定のままだと、コントローラー作成時に、不要なassetsやhelperが作成されて鬱陶しいので、不要なファイルはジェネレートしないよう以下のように設定しています。
 
 //source[/config/application.rb]{
 
@@ -172,25 +162,20 @@ config/application.rbで様々な設定を変更できます。
 module NyanstaDemo
   class Application < Rails::Application
     config.generators do |g|
-      # アセットをジェネレートしない
-      g.assets false
-      # ヘルパーをジェネレートしない
-      g.helper false
-      # ビュースペックをジェネレートしない
-      g.view_specs false
+      g.assets false     # アセットをジェネレートしない
+      g.helper false     # ヘルパーをジェネレートしない
+      g.view_specs false # ビュースペックをジェネレートしない
     end
 
-    # タイムゾーンをTokyoに変更
-    config.time_zone = 'Tokyo'
-    # 言語を日本語に変更
-    config.i18n.default_locale = :ja
+    config.time_zone = 'Tokyo'       # タイムゾーンをTokyoに変更
+    config.i18n.default_locale = :ja # 言語を日本語に変更
   end
 end
 ...
 //}
 
-設定についてより詳しくは、
+設定についてより詳しくは、公式のガイド等をご確認ください。
+
 @<href>{http://guides.rubyonrails.org/configuring.html}
-を御覧ください。
 
 ===[/column]

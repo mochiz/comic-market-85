@@ -1,13 +1,15 @@
-= InstagramAPI から写真情報を取得しよう
+= Instagram APIから写真情報を取得しよう
 
 == instagram gem をインストール
 
 Instagram API用の公式Gemが提供されているのでこちらを利用します。
+
 @<href>{https://github.com/Instagram/instagram-ruby-gem}
 
-Gemfileに下記項目を追加して、bundleコマンドを実行しましょう。
+Gemfileに下記を追加して、bundleコマンドを実行しましょう。
 
 //source[/Gemfile]{
+
 ...
 # instagram
 gem 'instagram'
@@ -16,9 +18,20 @@ group :development, :test do
   gem 'dotenv-rails'
 end
 ...
-//
 
-Instagramのアプリケーション管理画面からCLIENT ID, CLIENT SECRETを取得します。
+//}
+
+//emlist{
+$ bundle
+//}
+
+== InstagramクライアントIDを取得する
+
+APIへアクセスするために、クライアントIDとクライアントシークレットが必要です。
+Instagramのアプリケーション管理画面からCLIENT ID, CLIENT SECRETを取得しましょう。
+
+@<href>{http://instagram.com/developer/clients/manage/}
+
 //image[instagram][instagramアプリケーション管理画面]{
 //}
 

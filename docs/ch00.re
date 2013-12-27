@@ -11,12 +11,17 @@ Instagramに投稿された「猫」タグ付きの写真が一覧表示され�
 == 必要なもの
 
  * Ruby 2.1
+ * PostgreSQL 9.3
  * Bundler 1.5
  * Git 1.8
+ * Heroku Toolbelt
  * Instagram アカウント
+ * Heroku アカウント
 
 == 対象読者
 
-Railsを触ったことがある方を想定しています。
-一度もRailsに触ったことのない方は、本書より先に Ruby on Rails Tutorial @<href>{https://github.com/kmuto/review/blob/master/doc/format.rdoc} を触ってみることをオススメします。
+ある程度Railsを触ったことがある方を想定しています。
 
+一度も触ったことのない方は、先に Ruby on Rails Tutorial を触ってみることをオススメします。
+
+@<href>{https://github.com/kmuto/review/blob/master/doc/format.rdoc}
