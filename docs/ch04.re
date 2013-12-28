@@ -1,6 +1,7 @@
 = Herokuへデプロイしてみよう
 
-herokuコマンドには、Heroku Toolbeltが必要なので、まだの人はインストールしておきましょう。
+ここでいったんアプリの作成の手を止めて、作成中のアプリをHerokuへデプロイしてみましょう。
+herokuコマンドには、Heroku Toolbeltが必要なので、まだの人はインストールしておいてください。
 
 @<href>{https://toolbelt.heroku.com/}
 
@@ -22,7 +23,7 @@ Git remote heroku added
 
 == デプロイする
 
-git pushでherokuへデプロイします。
+git pushすることでデプロイすることができます。簡単便利。
 
 //emlist{
 $ git push heroku master
@@ -42,17 +43,26 @@ Total 100 (delta 21), reused 0 (delta 0)
 
 == herokuアプリへ環境変数を設定する
 
-heroku config:addコマンドで、InstagramAPI用の環境変数を設定します。
+ローカル環境で.envに保存されているInstagram API用の環境変数を、Herokuアプリで有効にする必要があります。
+heroku config:addコマンドで環境変数を設定しましょう。
 
 //emlist{
 
 $ heroku config:add INSTAGRAM_CLIENT_ID=[YOUR_CLIENT_ID]
 $ heroku config:add INSTAGRAM_CLIENT_SECRET=[YOUR_CLIENT_SECRET]
-$ mochiz-mac% heroku config | grep INSTAGRAM
+
+//}
+
+heroku configコマンドで設定した内容を確認しましょう。
+
+//emlist{
+
+$ heroku config | grep INSTAGRAM
 INSTAGRAM_CLIENT_ID:         xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 INSTAGRAM_CLIENT_SECRET:     xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 //}
+
 
 == 表示を確認する
 

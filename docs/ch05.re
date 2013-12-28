@@ -1,6 +1,7 @@
 = Bootstrapで見た目を良くしよう
 
-見た目を良くするため、Bootstrapを組み込みましょう。
+猫の写真がたくさん表示できるようになりましたが、写真だけではちょっとさびしいので、サムネイル表示してみたり、Instagramのサイトへのリンクを追加してみましょう。
+見た目を良くするため、Bootstrapを組み込みます。
 
 @<href>{http://getbootstrap.com/}
 
@@ -14,7 +15,7 @@ Rails + BootstrapのGemはいくつかありますが、今回はbootstrap-sass�
 
 Gemfileにbootstrap-sassと、ついでにfont-awesome-railsを追加しましょう。
 
-bootstrap3を使いたいので、バージョンを指定します。
+Bootstrap3を使いたいので、バージョンを指定します。
 
 //source[/Gemfile]{
 
@@ -26,7 +27,7 @@ gem 'font-awesome-rails', '~> 4.0.3.0'
 
 //}
 
-bundleコマンドでインストールし、スタイルシートとビューを変更します。
+bundleコマンドでインストールし、既存のスタイルシートとビューを変更します。
 
 //source[/app/assets/stylesheets/application.css.scss]{
 
@@ -48,7 +49,7 @@ bundleコマンドでインストールし、スタイルシートとビュー�
 //}
 
 
-== viewを改良する
+== Viewを改良する
 
 ちょっとオシャレっぽくするために、背景画像やサムネイル表示を追加してみましょう。
 

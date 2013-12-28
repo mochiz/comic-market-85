@@ -19,27 +19,9 @@ $ rails new nyansta-demo --skip-bundle
       create  app/helpers/application_helper.rb
 //}
 
-都度gitリポジトリへ保存しておきましょう。
-
-//emlist{
-$ git init
-Initialized empty Git repository in /Users/asakura/Sites/github/mochiz/nyansta-demo/.git/
-$ git add .
-$ git commit -m 'initial commit'
-[master (root-commit) 74a30c8] initial commit
- 52 files changed, 702 insertions(+)
- create mode 100644 .gitignore
- create mode 100644 Gemfile
- create mode 100644 README.rdoc
- create mode 100644 Rakefile
- ...
-//}
-
-
 == 必要なGemをインストールする
 
-bundleコマンドでGemをインストールしましょう。
-内容は以下のとおりです。
+必要なGemをインストールしましょう。Gemfileを以下のように変更してください。
 
 //source[/Gemfile]{
 
@@ -66,7 +48,6 @@ end
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'bullet'
   gem 'byebug'
   gem 'pry-rails'
   gem 'rails_best_practices'
@@ -83,7 +64,8 @@ group :test do
 end
 //}
 
-bundle installコマンドを実行します。システムのGemと切り離すため、--pathオプションを追加しています。
+bundleコマンドでGemをインストールしましょう。
+初回はbundle installコマンドを実行します。システムのGemと切り離すため、--pathオプションを追加しています。
 
 //emlist{
 $ bundle install --path vendor/bundle
@@ -97,9 +79,21 @@ It was installed into ./vendor/bundle
 //}
 
 
+インストールしたファイルがgitリポジトリに含まれないよう、.gitignoreに以下を追加してください。
+
+//source[/.gitignore]{
+
+...
+# Ignore vendor/bundle
+vendor/bundle
+...
+
+//}
+
+
 == データベースをセットアップする
 
-今回のアプリではデータベースは必要ないのですが、herokuへデプロイするためPostgreSQL用の設定に変更します。
+HerokuへデプロイするためPostgreSQL用の設定に変更します。database, usernameは任意のものを入力してください。
 
 //source[/config/database.yml]{
 
@@ -128,12 +122,6 @@ production:
   password:
 //}
 
-usernameに既存のユーザー名を使用するか、createuserコマンドでユーザーを作成してください。
-
-//emlist{
-$ createuser nyansta-demo -s
-//}
-
 DBのマイグレーションを行います。
 
 //emlist{
@@ -157,8 +145,17 @@ $ bundle exec rails s
 最後に変更をgitリポジトリへコミットしておきましょう。
 
 //emlist{
+$ git init
+Initialized empty Git repository in /Users/asakura/Sites/github/mochiz/nyansta-demo/.git/
 $ git add .
-$ git commit -m 'Instagram APIから写真情報を取得できるようにした'
+$ git commit -m 'initial commit'
+[master (root-commit) 74a30c8] initial commit
+ 52 files changed, 702 insertions(+)
+ create mode 100644 .gitignore
+ create mode 100644 Gemfile
+ create mode 100644 README.rdoc
+ create mode 100644 Rakefile
+ ...
 //}
 
 == この章での変更点

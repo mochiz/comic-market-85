@@ -30,6 +30,8 @@ $ bundle
 APIへアクセスするために、クライアントIDとクライアントシークレットが必要です。
 Instagramのアプリケーション管理画面からCLIENT ID, CLIENT SECRETを取得しましょう。
 
+※手順は@<hd>{ap01|アプリケーション登録する}を参照してください。
+
 @<href>{http://instagram.com/developer/clients/manage/}
 
 //image[instagram][instagramアプリケーション管理画面]{
@@ -72,18 +74,27 @@ Instagram.configure do |config|
 end
 //}
 
-ここでIDをベタ書きしてしまうと、gitリポジトリにクライアントID, クライアントシークレットが保存されてしまってよろしくないので、環境変数から読み込むようにしています。
+ここでIDをベタ書きしてしまうと、gitリポジトリにクライアントID, クライアントシークレットが保存されてセキュリティ的にも運用的にもよろしくないので、環境変数から読み込むようにします。
 
-ここで、.bashや.zshに環境変数を設定すると、他の環境へ影響が出てしまうので、このプロジェクトでのみ適用されるよう、dotenvを利用します。
+他プロジェクトへ影響が出ないよう、このプロジェクトでのみ適用される環境変数をよういするため、dotenvを利用します。
 
-前章でdotenv-rails gemはインストール済みなので、プロジェクトルートに.envファイルを作成することでプロジェクトでのみ有効な環境変数を設定することが出来ます。
-ここにクライアントID, クライアントシークレットを設定しましょう。
+前章でdotenv-rails gemはインストール済みなので.envファイルを用意するだけで、このプロジェクトでのみ有効な環境変数を設定することが出来ます。
+下記のようにクライアントID, クライアントシークレットを設定しましょう。
 このファイルはリポジトリにプッシュしないよう、.ignoreに追記しておきます。
 
 //source[/.env]{
 
 INSTAGRAM_CLIENT_ID=[your client id]
 INSTAGRAM_CLIENT_SECRET=[you client secret]
+
+//}
+
+//source[/.gitignore]{
+
+...
+# Ignore .env
+.env
+...
 
 //}
 
